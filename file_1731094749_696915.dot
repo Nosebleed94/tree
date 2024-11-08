@@ -1,0 +1,30 @@
+
+digraph structs {
+charset = "UTF-8";
+rankdir=TB;
+bgcolor = "#0000aa";
+fontcolor = black;
+fontsize = 18;
+style = "rounded";
+margin = 0.3;
+ranksep = 1.0;
+nodesep = 0.9;
+bgcolor = "#78FFDB";
+edge [color="#FF69B4"];
+
+50[shape=record, label= "{ip: 0x32 | data: 50 | {<f1> no | <f2> yes}}"];
+70[shape=record, label= "{ip: 0x46 | data: 70 | {<f1> no | <f2> yes}}"];
+80[shape=record, label= "{ip: 0x50 | data: 80 | {<f1> no | <f2> yes}}"];
+65[shape=record, label= "{ip: 0x41 | data: 65 | {<f1> no | <f2> yes}}"];
+66[shape=record, label= "{ip: 0x42 | data: 66 | {<f1> no | <f2> yes}}"];
+30[shape=record, label= "{ip: 0x1e | data: 30 | {<f1> no | <f2> yes}}"];
+35[shape=record, label= "{ip: 0x23 | data: 35 | {<f1> no | <f2> yes}}"];
+10[shape=record, label= "{ip: 0xa | data: 10 | {<f1> no | <f2> yes}}"];
+50:<f2> -> 30
+30:<f2> -> 10
+30:<f1> -> 35
+50:<f1> -> 70
+70:<f2> -> 65
+65:<f1> -> 66
+70:<f1> -> 80
+}
