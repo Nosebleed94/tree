@@ -1,6 +1,9 @@
 #ifndef DUMPNAHUY_H
 #define DUMPNAHUY_H
 
+const char yes[] = "yes";
+const char no[] = "no";
+
 const char adding_html_first[] = "\n"
                                 "digraph structs {\n"
                                 "charset = \"UTF-8\";\n"
@@ -18,6 +21,6 @@ const char adding_html_first[] = "\n"
 
 void Dump_moment      (struct Node_t* node);
 void Print_dot        (struct Node_t* node, FILE* file);
-void Print_to_arr     (struct Node_t* node, FILE* file);
+void Print_struct_node     (struct Node_t* node, FILE* file);
 
 #endif // DUMPNAHUY_H

@@ -11,6 +11,8 @@
 
 void Dump_moment (struct Node_t* node)
 {
+    assert (node);
+    
     struct timeval tv;
     gettimeofday (&tv, NULL);
     long seconds = tv.tv_sec;
@@ -27,7 +29,7 @@ void Dump_moment (struct Node_t* node)
 
     fprintf (file_dump, "%s", adding_html_first);
 
-    Print_to_arr (node, file_dump);
+    Print_struct_node (node, file_dump);
     
     Print_dot (node, file_dump);
 
@@ -45,30 +47,32 @@ void Dump_moment (struct Node_t* node)
 
 void Print_dot (struct Node_t* node, FILE* file)
 {
+    assert (node);
+
     if(!node) return; 
 
-    if (node->right)
+    if (node->yes)
     {
-        fprintf   (file,"%d:<f2> -> %d\n", node->data_node, node->right->data_node);
-        Print_dot (node->right, file);
+        fprintf   (file,"%s:<f2> -> %s\n", node->data_node, node->yes->data_node);
+        Print_dot (node->yes, file);
     }
-    if (node->left)
+    if (node->no)
     {
-        fprintf   (file, "%d:<f1> -> %d\n", node->data_node, node->left->data_node);
-        Print_dot (node->left, file);
+        fprintf   (file, "%s:<f1> -> %s\n", node->data_node, node->no->data_node);
+        Print_dot (node->no, file);
     }
 }
 
-void Print_to_arr (struct Node_t* node, FILE* file)
+void Print_struct_node (struct Node_t* node, FILE* file)
 {
     assert (node);
 
     if(!node) return; 
 
     void* pointer = (void*)(uintptr_t)node->data_node; // спросить Вову 
-    fprintf (file, "%d[shape=record, label= \"{ip: %p | data: %d | {<f1> no | <f2> yes}}\"];\n", 
+    fprintf (file, "%s[shape=record, label= \"{ip: %p | data: %s | {<f1> no | <f2> yes}}\"];\n", 
     node->data_node, pointer, node->data_node);
 
-    if (node->left)   {Print_to_arr (node->left, file);}
-    if (node->right)  {Print_to_arr (node->right, file);}
+    if (node->no)   {Print_struct_node (node->no, file);}
+    if (node->yes)  {Print_struct_node (node->yes, file);}
 }
